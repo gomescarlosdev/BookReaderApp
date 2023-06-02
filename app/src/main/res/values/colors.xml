@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!--Themes-->
+    <color name="primary_light">#5b7ff4</color>
+    <color name="primary_light_variant">#f9f8f8</color>
+    <color name="secondary_light">#243BBA</color>
+
+    <color name="primary_dark">#202f36</color>
+    <color name="primary_dark_variant">#131f22</color>
+    <color name="secondary_dark">#131f22</color>
+    <!-- -->
+
+
+    <color name="blue_100">#2192cb</color>
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
@@ -7,4 +20,11 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="light_grey">#DDDCDC</color>
+    <color name="text_grey">#7C7C7C</color>
+
+    <color name="app_primary">#5b7ff4</color>
+
+
 </resources>

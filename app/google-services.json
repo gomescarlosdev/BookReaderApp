@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "279263007042",
+    "project_id": "epub-book-reader-app",
+    "storage_bucket": "epub-book-reader-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:279263007042:android:a427ba1723e334c46af8db",
+        "android_client_info": {
+          "package_name": "br.com.poo2.bookreaderapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "279263007042-qdvrn15imdr07rtb78khkn3idut1ik3v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.poo2.bookreaderapp",
+            "certificate_hash": "ee7213823a9b2eab49128f2e5ba1a0e2cd7401ba"
+          }
+        },
+        {
+          "client_id": "279263007042-21i6p6rqolirp44garcssjliecdiqg80.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAfus0DQqF2rboSBXxc4NYkt4qmWtSzAWM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "279263007042-21i6p6rqolirp44garcssjliecdiqg80.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
