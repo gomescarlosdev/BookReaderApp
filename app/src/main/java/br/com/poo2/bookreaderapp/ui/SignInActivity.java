@@ -128,13 +128,13 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                 if (user == null)
                     throw new RuntimeException("Google login failed!!");
 
-                if (user.getUserType() != null && user.getUserType().equals("admin")) {
+//                if (user.getUserType() != null && user.getUserType().equals("admin")) {
                     startActivity(new Intent(SignInActivity.this, MainActivity.class));
                     finish();
-                }else{
-                    startActivity(new Intent(SignInActivity.this, AdminDashBoardActivity.class));
-                    finish();
-                }
+//                }else{
+//                    startActivity(new Intent(SignInActivity.this, AdminDashBoardActivity.class));
+//                    finish();
+//                }
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {

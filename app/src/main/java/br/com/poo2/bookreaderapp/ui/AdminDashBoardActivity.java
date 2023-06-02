@@ -10,13 +10,13 @@ import java.util.List;
 
 import br.com.poo2.bookreaderapp.R;
 import br.com.poo2.bookreaderapp.databinding.ActivityAdminDashBoardBinding;
-import br.com.poo2.bookreaderapp.model.CategoryModel;
+import br.com.poo2.bookreaderapp.model.Category;
 import br.com.poo2.bookreaderapp.ui.adapters.AdminDashBoardAdapter;
 
 public class AdminDashBoardActivity extends AppCompatActivity {
 
     private ActivityAdminDashBoardBinding binding;
-    private List<CategoryModel> categoryModels = new ArrayList<>();
+    private List<Category> categories = new ArrayList<>();
 
 
 
@@ -28,7 +28,7 @@ public class AdminDashBoardActivity extends AppCompatActivity {
 
         setUpCategoryModels();
 
-        binding.recyclerViewAdminActions.setAdapter(new AdminDashBoardAdapter(this, categoryModels));
+        binding.recyclerViewAdminActions.setAdapter(new AdminDashBoardAdapter(this, categories));
         binding.recyclerViewAdminActions.setLayoutManager(new LinearLayoutManager(this));
     }
 
@@ -36,7 +36,7 @@ public class AdminDashBoardActivity extends AppCompatActivity {
         String[] categoriesTitles = getResources().getStringArray(R.array.recycler_categories);
 
         for(String i : categoriesTitles){
-            categoryModels.add(new CategoryModel(i));
+            categories.add(new Category(i));
         }
     }
 

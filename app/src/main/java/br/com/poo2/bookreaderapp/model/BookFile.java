@@ -1,23 +1,26 @@
 package br.com.poo2.bookreaderapp.model;
 
 public class BookFile {
+
     private String fileName;
-    private String fileUrl;
+    private String fileContext;
 
     public BookFile() {
 
     }
 
-    public BookFile(String fileName, String fileUrl) {
+    public BookFile(String fileName, String fileUrlRef) {
         this.fileName = fileName;
-        this.fileUrl = fileUrl;
+        this.fileContext = fileUrlRef;
     }
 
     public String getFileName() {
         return fileName;
     }
 
-    public String getFileUrl() {
-        return fileUrl;
+    public String getFileContext() {
+        return fileContext;
     }
+
+
 }

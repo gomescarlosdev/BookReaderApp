@@ -4,14 +4,14 @@ import androidx.annotation.NonNull;
 
 import java.util.Objects;
 
-public class CategoryModel {
+public class Category {
 
     private String title;
 
-    public CategoryModel() {
+    public Category() {
     }
 
-    public CategoryModel(String title) {
+    public Category(String title) {
         this.title = title;
     }
 
@@ -35,7 +35,7 @@ public class CategoryModel {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        CategoryModel that = (CategoryModel) o;
+        Category that = (Category) o;
         return Objects.equals(title, that.title);
     }
 

@@ -15,10 +15,17 @@
     <string name="on_the_epub_book_reader_app_you_have_access">On the ePub Book Reader app, you have access to a vast collection of free digital books in ePub format, as well you can upload your favorite titles.</string>
     <string name="category_addiction">Category Addiction</string>
     <string name="admin_dash_board">Admin Dash Board</string>
+    <string name="home">Home</string>
+    <string name="upload_file">Upload File</string>
+    <string name="book_image">Book Image</string>
 
     <string-array name="recycler_categories">
         <item>Add Category</item>
         <item>Add Book</item>
+    </string-array>
+
+    <string-array name="book_titles">
+        <item>The Lord of the Rings</item>
     </string-array>
 
 </resources>

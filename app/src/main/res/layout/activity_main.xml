@@ -1,41 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.MainActivity">
 
-    <TextView
-        android:id="@+id/text_hello"
+    <FrameLayout
+        android:id="@+id/main_frame_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+<!--    <TextView-->
+<!--        android:id="@+id/text_hello"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Hello World"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+
+
+<!--        <Button-->
+<!--            android:id="@+id/button_choose_file"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/text_hello"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/text_hello"-->
+<!--            app:layout_constraintEnd_toEndOf="@+id/text_hello"-->
+<!--            android:text="Escolher arquivo" />-->
+
+<!--        <Button-->
+<!--            android:id="@+id/button_file_upload"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/button_choose_file"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/button_choose_file"-->
+<!--            app:layout_constraintEnd_toEndOf="@+id/button_choose_file"-->
+<!--            android:text="Fazer upload" />-->
+
+    <com.google.android.material.bottomappbar.BottomAppBar
+        android:id="@+id/home_bottom_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:backgroundTint="?attr/colorPrimary"
+        app:fabCradleMargin="4dp"
+        app:fabCradleRoundedCornerRadius="30dp">
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/home_bottom_nav_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:labelVisibilityMode="labeled"
+            android:layout_marginEnd="16dp"
+            android:background="@android:color/transparent"
+            app:menu="@menu/bottom_menu"
+            />
+
+    </com.google.android.material.bottomappbar.BottomAppBar>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_find_new_call"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:maxImageSize="32dp"
+        android:contentDescription="@string/upload_file"
+        app:layout_anchor="@id/home_bottom_bar"
+        android:backgroundTint="?attr/colorPrimary"
+        android:foreground="@drawable/ic_file"
+        app:rippleColor="@color/white"
+        />
 
-
-
-        <Button
-            android:id="@+id/button_choose_file"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/text_hello"
-            app:layout_constraintStart_toStartOf="@+id/text_hello"
-            app:layout_constraintEnd_toEndOf="@+id/text_hello"
-            android:text="Escolher arquivo" />
-
-        <Button
-            android:id="@+id/button_file_upload"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/button_choose_file"
-            app:layout_constraintStart_toStartOf="@+id/button_choose_file"
-            app:layout_constraintEnd_toEndOf="@+id/button_choose_file"
-            android:text="Fazer upload" />
-
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

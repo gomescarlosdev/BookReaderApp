@@ -12,16 +12,16 @@ import java.util.List;
 
 import br.com.poo2.bookreaderapp.R;
 import br.com.poo2.bookreaderapp.databinding.RecyclerViewAdminActionsBinding;
-import br.com.poo2.bookreaderapp.model.CategoryModel;
+import br.com.poo2.bookreaderapp.model.Category;
 
 public class AdminDashBoardAdapter extends RecyclerView.Adapter<AdminDashBoardAdapter.HomeViewHolder> {
     private Context context;
-    private List<CategoryModel> lessonModelList;
+    private List<Category> lessonModelList;
 
 
-    public AdminDashBoardAdapter(Context context, List<CategoryModel> categoryModelList) {
+    public AdminDashBoardAdapter(Context context, List<Category> categoryList) {
         this.context = context;
-        this.lessonModelList = categoryModelList;
+        this.lessonModelList = categoryList;
     }
 
     @NonNull
@@ -34,7 +34,7 @@ public class AdminDashBoardAdapter extends RecyclerView.Adapter<AdminDashBoardAd
 
     @Override
     public void onBindViewHolder(HomeViewHolder holder, int position) {
-        CategoryModel lesson = lessonModelList.get(position);
+        Category lesson = lessonModelList.get(position);
         holder.bind(lesson);
     }
 
@@ -56,7 +56,7 @@ public class AdminDashBoardAdapter extends RecyclerView.Adapter<AdminDashBoardAd
 //            textActionTitle = binding.textActionTitle;
         }
 
-        public void bind(CategoryModel lesson) {
+        public void bind(Category lesson) {
             binding.imgCategories.setImageResource(R.drawable.ic_category_options);
             binding.textActionTitle.setText(lesson.getTitle());
         }
