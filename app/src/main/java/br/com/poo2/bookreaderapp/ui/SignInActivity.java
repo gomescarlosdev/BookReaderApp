@@ -17,15 +17,12 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import br.com.poo2.bookreaderapp.R;
 import br.com.poo2.bookreaderapp.databinding.ActivitySignInBinding;
-import br.com.poo2.bookreaderapp.model.User;
+import br.com.poo2.bookreaderapp.model.UserModel;
+import br.com.poo2.bookreaderapp.utils.AppSharedPreferences;
 
 public class SignInActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -48,7 +45,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
         auth = FirebaseAuth.getInstance();
         if(auth.getCurrentUser() != null){
-            goToNextActivity(auth.getCurrentUser());
+            goToNextActivity();
         }
 
         GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions
@@ -58,7 +55,6 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                 .build();
 
         googleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions);
-
         binding.buttonSignWithGoogle.setOnClickListener(this);
     }
 
@@ -86,7 +82,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         FirebaseUser firebaseUser = auth.getCurrentUser();
-                        User user = new User(
+                        UserModel userModel = new UserModel(
                                 firebaseUser.getUid(),
                                 firebaseUser.getDisplayName(),
                                 firebaseUser.getPhotoUrl().toString(),
@@ -95,8 +91,8 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                         );
                         database.getReference()
                                 .child("Users")
-                                .child(user.getUid())
-                                .setValue(user).addOnCompleteListener(task1 -> {
+                                .child(userModel.getUid())
+                                .setValue(userModel).addOnCompleteListener(task1 -> {
                                     if (task.isSuccessful()) {
                                         startActivity(new Intent(this, MainActivity.class));
                                         finishAffinity();
@@ -109,39 +105,17 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                                     }
                                 });
                         Log.e("profile", firebaseUser.getDisplayName());
+                        AppSharedPreferences appSharedPreferences = new AppSharedPreferences(this);
+                        appSharedPreferences.storeString("USER_ID", userModel.getUid());
                     } else {
                         Log.e("err", task.getException().getLocalizedMessage());
                     }
                 });
     }
-
-    private void goToNextActivity(FirebaseUser firebaseUser){
-
-        DatabaseReference userRef = database.getReference()
-                .child("Users")
-                .child(firebaseUser.getUid());
-
-        userRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                User user = dataSnapshot.getValue(User.class);
-                if (user == null)
-                    throw new RuntimeException("Google login failed!!");
-
-//                if (user.getUserType() != null && user.getUserType().equals("admin")) {
-                    startActivity(new Intent(SignInActivity.this, MainActivity.class));
-                    finish();
-//                }else{
-//                    startActivity(new Intent(SignInActivity.this, AdminDashBoardActivity.class));
-//                    finish();
-//                }
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-
+    private void goToNextActivity(){
+        startActivity(new Intent(SignInActivity.this, MainActivity.class));
+        finish();
     }
+
+
 }

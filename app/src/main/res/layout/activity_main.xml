@@ -11,35 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />
-<!--    <TextView-->
-<!--        android:id="@+id/text_hello"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Hello World"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
-
-
-
-<!--        <Button-->
-<!--            android:id="@+id/button_choose_file"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/text_hello"-->
-<!--            app:layout_constraintStart_toStartOf="@+id/text_hello"-->
-<!--            app:layout_constraintEnd_toEndOf="@+id/text_hello"-->
-<!--            android:text="Escolher arquivo" />-->
-
-<!--        <Button-->
-<!--            android:id="@+id/button_file_upload"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/button_choose_file"-->
-<!--            app:layout_constraintStart_toStartOf="@+id/button_choose_file"-->
-<!--            app:layout_constraintEnd_toEndOf="@+id/button_choose_file"-->
-<!--            android:text="Fazer upload" />-->
 
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/home_bottom_bar"

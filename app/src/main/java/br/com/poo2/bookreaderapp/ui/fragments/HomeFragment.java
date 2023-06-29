@@ -10,39 +10,77 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import java.util.ArrayList;
+import java.util.List;
 
 import br.com.poo2.bookreaderapp.R;
 import br.com.poo2.bookreaderapp.databinding.FragmentHomeBinding;
-import br.com.poo2.bookreaderapp.model.Book;
+import br.com.poo2.bookreaderapp.model.BookModel;
+import br.com.poo2.bookreaderapp.model.BookModelItem;
+import br.com.poo2.bookreaderapp.retrofit.ApiService;
+import br.com.poo2.bookreaderapp.retrofit.RetrofitClient;
 import br.com.poo2.bookreaderapp.ui.adapters.HomeRecyclerViewAdapter;
+import br.com.poo2.bookreaderapp.utils.AppSharedPreferences;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
-    private ArrayList<Book> commonBookLesson = new ArrayList<>();
+    private List<BookModelItem> bookModelItems = new ArrayList<>();
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
 
-        setUpCommonBookLessons();
+        ApiService apiService = RetrofitClient.getApiService();
 
-        HomeRecyclerViewAdapter adapter = new HomeRecyclerViewAdapter(requireContext(), commonBookLesson);
+        AppSharedPreferences appSharedPreferences = new AppSharedPreferences(requireContext());
+        String userId = appSharedPreferences.getStoredString("USER_ID");
+
+        if(userId == null){
+            FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+            userId = firebaseUser.getUid();
+        }
+
+
+        Call<List<BookModel>> call = apiService.getPDFFiles(userId);
+        call.enqueue(new Callback<List<BookModel>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<BookModel>> call, @NonNull Response<List<BookModel>> response) {
+                if (response.isSuccessful()) {
+                    List<BookModel> pdfFiles = response.body();
+                    setUpCommonBookLessons(pdfFiles);
+                }
+            }
+            @Override
+            public void onFailure(@NonNull Call<List<BookModel>> call, @NonNull Throwable t) {
+
+            }
+        });
+
+        HomeRecyclerViewAdapter adapter = new HomeRecyclerViewAdapter(requireContext(), bookModelItems);
         binding.recyclerViewHomeBooks.setAdapter(adapter);
         binding.recyclerViewHomeBooks.setLayoutManager(new GridLayoutManager(requireContext(), 4));
 
         return binding.getRoot();
     }
 
-    private void setUpCommonBookLessons() {
-        String[] bookTitles = getResources().getStringArray(R.array.book_titles);
+    private void setUpCommonBookLessons(List<BookModel> pdfFiles) {
 
-        for (String bookTitle : bookTitles) {
-            commonBookLesson.add(new Book(bookTitle, "Tolkien", R.drawable.cover_lord_of_the_rings));
-            commonBookLesson.add(new Book(bookTitle, "Tolkien", R.drawable.cover_game_of_thrones));
-            commonBookLesson.add(new Book(bookTitle, "Tolkien", R.drawable.cover_the_name_of_the_wind));
-            commonBookLesson.add(new Book(bookTitle, "Tolkien", R.drawable.cover_the_wheel_of_time));
+        for (BookModel bookModel : pdfFiles) {
+            bookModelItems.add(new BookModelItem(
+                    bookModel.getId(),
+                    bookModel.getCustomerId(),
+                    bookModel.getFileName(),
+                    bookModel.getFileData(),
+                    R.drawable.ic_pdf)
+            );
         }
+
     }
 }

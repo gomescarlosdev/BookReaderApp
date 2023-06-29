@@ -1,6 +1,6 @@
 package br.com.poo2.bookreaderapp.model;
 
-public class User {
+public class UserModel {
 
     private String uid;
     private String name;
@@ -8,11 +8,11 @@ public class User {
     private String email;
     private String userType;
 
-    public User() {
+    public UserModel() {
 
     }
 
-    public User(String uid, String name, String profile, String email, String userType) {
+    public UserModel(String uid, String name, String profile, String email, String userType) {
         this.uid = uid;
         this.name = name;
         this.profile = profile;

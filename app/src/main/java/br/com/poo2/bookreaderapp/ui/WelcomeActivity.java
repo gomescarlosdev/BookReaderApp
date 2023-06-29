@@ -16,19 +16,17 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
     private ActivityWelcomeBinding binding;
     private FirebaseAuth auth;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityWelcomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.buttonGetStarted.setOnClickListener(this);
-
         auth = FirebaseAuth.getInstance();
         if(auth.getCurrentUser() != null){
             goToNextActivity();
         }
+        binding.buttonGetStarted.setOnClickListener(this);
     }
 
     @Override

@@ -10,16 +10,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import br.com.poo2.bookreaderapp.databinding.RecyclerViewHomeBooksBinding;
-import br.com.poo2.bookreaderapp.model.Book;
+import br.com.poo2.bookreaderapp.model.BookModelItem;
 
 public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerViewAdapter.HomeViewHolder> {
     private Context context;
-    private List<Book> bookModelList;
+    private List<BookModelItem> bookModelModelList;
 
 
-    public HomeRecyclerViewAdapter(Context context, List<Book> bookModelList) {
+    public HomeRecyclerViewAdapter(Context context, List<BookModelItem> bookModelModelList) {
         this.context = context;
-        this.bookModelList = bookModelList;
+        this.bookModelModelList = bookModelModelList;
     }
 
     @NonNull
@@ -32,13 +32,13 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerVi
 
     @Override
     public void onBindViewHolder(HomeViewHolder holder, int position) {
-        Book book = bookModelList.get(position);
-        holder.bind(book);
+        BookModelItem bookModel = bookModelModelList.get(position);
+        holder.bind(bookModel);
     }
 
     @Override
     public int getItemCount() {
-        return bookModelList.size();
+        return bookModelModelList.size();
     }
 
     public static class HomeViewHolder extends RecyclerView.ViewHolder {
@@ -50,8 +50,8 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerVi
             this.binding = binding;
         }
 
-        public void bind(Book book) {
-            binding.imgBookCover.setImageResource(book.getCover());
+        public void bind(BookModelItem bookModel) {
+            binding.imgBookCover.setImageResource(bookModel.getCover());
         }
     }
 

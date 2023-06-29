@@ -2,19 +2,21 @@ package br.com.poo2.bookreaderapp.model;
 
 import java.util.Arrays;
 
-public class BookModel {
+public class BookModelItem {
 
     private Integer id;
     private String customerId;
     private String fileName;
     private byte[] fileData;
+    private int cover;
 
     // Construtor
-    public BookModel(Integer id, String customerId, String fileName, byte[] fileData) {
+    public BookModelItem(Integer id, String customerId, String fileName, byte[] fileData, int cover) {
         this.id = id;
         this.customerId = customerId;
         this.fileName = fileName;
         this.fileData = fileData;
+        this.cover = cover;
     }
 
     // Getters e Setters
@@ -50,6 +52,14 @@ public class BookModel {
         this.fileData = fileData;
     }
 
+    public int getCover() {
+        return cover;
+    }
+
+    public void setCover(int cover) {
+        this.cover = cover;
+    }
+
     @Override
     public String toString() {
         return "BookModel{" +
@@ -59,5 +69,6 @@ public class BookModel {
                 ", fileData=" + Arrays.toString(fileData) +
                 '}';
     }
+
 
 }
